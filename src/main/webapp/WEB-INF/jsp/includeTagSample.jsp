@@ -4,15 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>どこつぶ</title>
+<title>インクルードのサンプル</title>
 </head>
 <body>
 <h1>どこつぶへようこそ</h1>
-<form action="/docoTsubu/Login" method="post">
-ユーザー名：<input type="text" name="name"><br>
-パスワード：<input type="password" name="pass"><br>
-<input type="submit" value="ログイン">
-</form>
+<p>「どこつぶ」は・・・</p>
 <jsp:include page="/WEB-INF/jsp/footer.jsp" />
 </body>
 </html>
