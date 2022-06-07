@@ -13,7 +13,7 @@ public class Mutter implements Serializable{
 		this.userName=userName;
 		this.text=text;
 	}
-	
+
 	//DBと連動
 	public Mutter(int id,String userName,String text) {
 		this.id=id;
