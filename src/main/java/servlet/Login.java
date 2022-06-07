@@ -20,19 +20,19 @@ public class Login extends HttpServlet{
 	private static final long serialVersionUID=1L;
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response)
-			throws ServletException, IOException{
+					throws ServletException, IOException{
 		//リクエストパラメータの取得
 		request.setCharacterEncoding("UTF-8");
 		String name=request.getParameter("name");
 		String pass=request.getParameter("pass");
-		
+
 		//Userインスタンス(ユーザー情報)の生成
 		User user=new User(name,pass);
-		
+
 		//ログイン処理
 		LoginLogic loginlogic=new LoginLogic();
 		boolean isLogin=loginlogic.execute(user);
-		
+
 		//ログイン成功時の処理
 		if(isLogin) {
 			//ユーザー情報をセッションスコープに保存

@@ -13,7 +13,7 @@ public class Mutter implements Serializable{
 		this.userName=userName;
 		this.text=text;
 	}
-	
+
 	public int getId() {
 		return id;
 	}

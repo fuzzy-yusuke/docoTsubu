@@ -16,10 +16,10 @@ public class MutterDAO {
 			"jdbc:h2:tcp://localhost/~/docoTsubu";
 	private final String DB_USER="sa";
 	private final String DB_PASS="";
-	
+
 	public List<Mutter> findAll(){
 		List<Mutter> mutterList=new ArrayList();
-		
+
 		//DB接続
 		try(Connection conn=DriverManager.getConnection(
 				JDBC_URL,DB_USER,DB_PASS)){
@@ -27,10 +27,10 @@ public class MutterDAO {
 			String sql=
 					"SELECT ID,NAME,TEXT FROM MUTTER ORDER BY ID DESC";
 			PreparedStatement pStmt=conn.prepareStatement(sql);
-			
+
 			//SELECT文を実行
 			ResultSet rs=pStmt.executeQuery();
-			
+
 			//SELECT文の結果をArrayListに追加
 			while(rs.next()) {
 				int id=rs.getInt("ID");
@@ -39,33 +39,33 @@ public class MutterDAO {
 				Mutter mutter=new Mutter(id,userName,text);
 				mutterList.add(mutter);
 			}
-			}catch(SQLException e) {
-				e.printStackTrace();
-				return null;
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return null;
 		}return mutterList;
-		
-			}public boolean create(Mutter mutter) {
-				//DB接続
-				try(Connection conn=DriverManager.getConnection(
-						JDBC_URL,DB_USER,DB_PASS)){
-					
-					//INSERT文の準備(idは自動連番)
-					String sql="INSERT INTO MUTTER(NAME,TEXT) VALUES (?,?)";
-					PreparedStatement pStmt=conn.prepareStatement(sql);
-					
-					//INSERT文中の「？」に使用する値を設定し、SQLを作成
-					pStmt.setString(1,mutter.getUserName());
-					pStmt.setString(2,mutter.getText());
-					
-					//INSERT文を実行（resultには追加された行数が代入される）
-					int result=pStmt.executeUpdate();
-					if(result != 1) {
-						return false;
-					}
+
+	}public boolean create(Mutter mutter) {
+		//DB接続
+		try(Connection conn=DriverManager.getConnection(
+				JDBC_URL,DB_USER,DB_PASS)){
+
+			//INSERT文の準備(idは自動連番)
+			String sql="INSERT INTO MUTTER(NAME,TEXT) VALUES (?,?)";
+			PreparedStatement pStmt=conn.prepareStatement(sql);
+
+			//INSERT文中の「？」に使用する値を設定し、SQLを作成
+			pStmt.setString(1,mutter.getUserName());
+			pStmt.setString(2,mutter.getText());
+
+			//INSERT文を実行（resultには追加された行数が代入される）
+			int result=pStmt.executeUpdate();
+			if(result != 1) {
+				return false;
+			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 			return false;
 		}
-			return true;
+		return true;
 	}
 }
