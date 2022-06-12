@@ -18,7 +18,7 @@ public class MutterDAO {
 	private final String DB_PASS="";
 
 	public List<Mutter> findAll(){
-		List<Mutter> mutterList=new ArrayList();
+		List<Mutter> mutterList=new ArrayList<>();
 
 		//DB接続
 		try(Connection conn=DriverManager.getConnection(
@@ -44,7 +44,8 @@ public class MutterDAO {
 			return null;
 		}return mutterList;
 
-	}public boolean create(Mutter mutter) {
+	}
+	public boolean create(Mutter mutter) {
 		//DB接続
 		try(Connection conn=DriverManager.getConnection(
 				JDBC_URL,DB_USER,DB_PASS)){
